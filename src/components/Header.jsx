@@ -4,7 +4,7 @@ import { FaBars } from "react-icons/fa6";
 
 const Header = () => {
     return (
-        <header className="px-5 py-6 flex justify-between gap-5 bg-stone-800 items-center">
+        <header className="px-5 py-6 flex justify-between gap-5 bg-gray-900/40 items-center">
             <div className='container'>
                 <div className='flex justify-between items-center'>
                     <Link href='/'>
@@ -14,7 +14,7 @@ const Header = () => {
                         <div className='text-[22px] block md:hidden'>
                             <FaBars />
                         </div>
-                        <div className='space-x-5 hidden md:block'>
+                        <div className='space-x-3 hidden md:block'>
                             <Link className="btn" href='/foods'>Foods</Link>
                             <Link className="btn" href='/reviews'>Reviews</Link>
                         </div>
