@@ -1,8 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CartProvider from "@/context/CartProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,17 +24,19 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} >
         <div className="site-main">
-          {/* Header */}
-          <Header></Header>
-          {/* Header End */}
+          <CartProvider>
+            {/* Header */}
+            <Header></Header>
+            {/* Header End */}
 
-          <main>
-            {children}
-          </main>
+            <main>
+              {children}
+            </main>
 
-          {/* Footer */}
-          <Footer></Footer>
-          {/* Footer End */}
+            {/* Footer */}
+            <Footer></Footer>
+            {/* Footer End */}
+          </CartProvider>
         </div>
       </body>
     </html >

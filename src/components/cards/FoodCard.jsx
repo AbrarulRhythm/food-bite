@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import CartButton from '../button/CartButton';
 
 const FoodCard = ({ food }) => {
     const { id, title, foodImg, price, category } = food;
@@ -33,9 +34,9 @@ const FoodCard = ({ food }) => {
                         <Link href={`/foods/${id}`} className='text-white text-center px-3 py-3.5 rounded-md w-full bg-orange-500 hover:bg-orange-600 duration-300 cursor-pointer '>
                             View Details
                         </Link>
-                        <button className='text-white px-3 py-3.5 rounded-md w-full bg-blue-500 hover:bg-blue-600 duration-300 cursor-pointer '>
-                            Add to Cart
-                        </button>
+                        <CartButton
+                            food={food}
+                        ></CartButton>
                     </div>
                 </div>
             </div>

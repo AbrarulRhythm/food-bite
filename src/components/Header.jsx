@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { FaBars } from "react-icons/fa6";
+import HeaderCartIcon from './button/HeaderCartIcon';
 
 const Header = () => {
     return (
@@ -10,7 +11,7 @@ const Header = () => {
                     <Link href='/'>
                         <img src='/logo.png' className="w-[160px]" />
                     </Link>
-                    <div>
+                    <div className='flex  items-center'>
                         <div className='text-[22px] block md:hidden'>
                             <FaBars />
                         </div>
@@ -18,6 +19,7 @@ const Header = () => {
                             <Link className="btn" href='/foods'>Foods</Link>
                             <Link className="btn" href='/reviews'>Reviews</Link>
                         </div>
+                        <HeaderCartIcon></HeaderCartIcon>
                     </div>
                 </div>
             </div>
