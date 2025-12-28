@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 const ReviewCard = ({ review }) => {
@@ -16,7 +17,9 @@ const ReviewCard = ({ review }) => {
                 {/* User Card Info */}
                 <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
-                        <img
+                        <Image
+                            width={48}
+                            height={48}
                             src={photo}
                             alt={user}
                             className="w-12 h-12 rounded-full object-cover border-2 border-orange-100"
@@ -38,7 +41,7 @@ const ReviewCard = ({ review }) => {
 
                 {/* Review Text */}
                 <div className="mb-6">
-                    <p className="text-gray-600 leading-relaxed italic text-sm md:text-base">
+                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                         {revieText}
                     </p>
                 </div>

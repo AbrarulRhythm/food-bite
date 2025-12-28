@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import CartButton from '../button/CartButton';
+import Image from 'next/image';
 
 const FoodCard = ({ food }) => {
     const { id, title, foodImg, price, category } = food;
@@ -10,7 +11,13 @@ const FoodCard = ({ food }) => {
             <div className='h-full bg-white borde border-white rounded-md group'>
                 {/* Food Image */}
                 <div className='overflow-hidden rounded-t-md relative'>
-                    <img src={foodImg} className='h-56 w-full object-cover group-hover:scale-110 duration-300' alt="" />
+                    <Image
+                        className='w-full h-56 object-cover group-hover:scale-110 duration-300'
+                        width={300}
+                        height={224}
+                        src={foodImg}
+                        alt={title}
+                    />
                     <div className="absolute top-4 left-4">
                         <span className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
                             {category}

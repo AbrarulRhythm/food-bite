@@ -3,9 +3,13 @@ import InputSearch from '@/components/InputSearch';
 import React from 'react';
 
 const getFoods = async (search) => {
-    const res = await fetch(`https://taxi-kitchen-api.vercel.app/api/v1/foods/random?search=${search}`);
+    const res = await fetch(`https://taxi-kitchen-api.vercel.app/api/v1/foods/random?search=${search}`, { next: { revalidate: 10 } });
     const data = await res.json();
     return data.foods || [];
+}
+
+export const metadata = {
+    title: 'Foods'
 }
 
 const FoodsPage = async ({ searchParams }) => {
