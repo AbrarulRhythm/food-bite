@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/shared/Header/Header";
 import Footer from "@/components/shared/Footer/Footer";
 import CartProvider from "@/context/CartProvider";
+import { ToastContainer } from "react-toastify";
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700', '800', '900'],
@@ -36,6 +37,8 @@ export default function RootLayout({ children }) {
             {/* Footer End */}
           </CartProvider>
         </div>
+
+        <ToastContainer />
       </body>
     </html >
   );

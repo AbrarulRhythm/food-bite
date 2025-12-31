@@ -1,11 +1,12 @@
 import { connect } from "@/app/lib/dbConnect";
+import { revalidatePath } from "next/cache";
 
 const feedbackCollection = connect('feedbacks');
 
 // FeedBack GET
 export async function GET() {
     try {
-        const result = await feedbackCollection.find().toArray();
+        const result = await feedbackCollection.find().sort({ date: -1 }).toArray();
 
         return Response.json({
             success: true,
@@ -38,6 +39,7 @@ export async function POST(req) {
         const newFeedBack = { message, date: new Date().toISOString() };
 
         const result = await feedbackCollection.insertOne(newFeedBack);
+        revalidatePath('/feedback');
 
         return Response.json({
             success: true,

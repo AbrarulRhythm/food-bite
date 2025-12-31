@@ -19,6 +19,7 @@ const Header = () => {
                         <div className='space-x-3 hidden md:block'>
                             <Link prefetch={false} className="btn" href='/foods'>Foods</Link>
                             <Link className="btn" href='/reviews'>Reviews</Link>
+                            <Link className="btn" href='/feedback'>Feedbacks</Link>
                         </div>
                         <HeaderCartIcon></HeaderCartIcon>
                     </div>
