@@ -1,11 +1,13 @@
 'use client'
 
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
 const FeedBackForm = () => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,6 +40,7 @@ const FeedBackForm = () => {
             if (data?.data?.insertedId) {
                 toast.success('Feedback added successfully! 🎉');
                 e.target.reset(); // form reset
+                router.push('/feedback');
             }
         }
         catch (error) {

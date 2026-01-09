@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
 import React from 'react';
 
 export async function generateMetadata({ params }) {
@@ -30,10 +31,8 @@ const FoodDetails = async ({ params }) => {
     return (
         <section className='food-details py-10 md:py-12 lg:py-20'>
             <div className='container'>
-                {!food ? (
-                    <div className="min-h-screen flex items-center justify-center">
-                        <h2 className="text-2xl font-bold text-gray-800">Food Not Found</h2>
-                    </div>
+                {!food.title ? (
+                    redirect('/foods')
                 ) : (
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
                         {/* Media Section (Left - 7 Columns) */}
