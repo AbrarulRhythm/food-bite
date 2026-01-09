@@ -1,4 +1,4 @@
-import DeleteButton from '@/app/feedback/_components/DeleteButton/DeleteButton';
+import DeleteButton from '@/app/feedback/_components/DeleteButton';
 import moment from 'moment';
 import React from 'react';
 import { FaRegEdit } from "react-icons/fa";

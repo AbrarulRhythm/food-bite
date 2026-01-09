@@ -24,7 +24,7 @@ const DeleteButton = ({ id }) => {
                 setIsDeleting(true);
 
                 try {
-                    const res = await fetch(`http://localhost:3000/api/feedback/${id}`, {
+                    const res = await fetch(`${process.env.NEXT_PUBLIC_server}/api/feedback/${id}`, {
                         method: 'DELETE'
                     });
 
