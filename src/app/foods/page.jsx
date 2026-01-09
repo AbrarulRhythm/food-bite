@@ -1,6 +1,6 @@
 import FoodCard from '@/components/cards/FoodCard';
 import InputSearch from '@/components/InputSearch';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 const getFoods = async (search) => {
     const res = await fetch(`https://taxi-kitchen-api.vercel.app/api/v1/foods/random?search=${search}`, { next: { revalidate: 10 } });
@@ -24,7 +24,9 @@ const FoodsPage = async ({ searchParams }) => {
                         <h2 className='text-2xl md:text-3xl font-bold'>Total <span className=' text-orange-400'>{foods.length}</span> Foods Found</h2>
                     </div>
                     <div className='w-full md:w-6/12 px-3'>
-                        <InputSearch></InputSearch>
+                        <Suspense fallback={<input type="text" placeholder="Loading search..." className="w-full p-2 border rounded" />}>
+                            <InputSearch></InputSearch>
+                        </Suspense>
                     </div>
                 </div>
 

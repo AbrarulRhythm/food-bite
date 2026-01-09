@@ -1,6 +1,6 @@
 import InputSearch from '@/components/InputSearch';
 import FoodCardSkeleton from '@/components/skeletons/FoodCardSkeleton';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 const loading = () => {
     return (
@@ -11,7 +11,9 @@ const loading = () => {
                         <h2 className='text-2xl md:text-3xl font-bold'>Total <span className=' text-orange-400'>0</span> Foods Found</h2>
                     </div>
                     <div className='w-full md:w-6/12 px-3'>
-                        <InputSearch></InputSearch>
+                        <Suspense fallback={<input type="text" placeholder="Loading search..." className="w-full p-2 border rounded" />}>
+                            <InputSearch></InputSearch>
+                        </Suspense>
                     </div>
                 </div>
 

@@ -7,10 +7,12 @@ export const metadata = {
     title: 'Feedbacks'
 }
 
+export const dynamic = 'force-dynamic';
+
 const getFeedback = async () => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_server}/api/feedback/`, {
-            cache: 'force-cache',
+            // cache: 'force-cache',
             next: { revalidate: 60 }
         });
 
