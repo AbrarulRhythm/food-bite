@@ -1,5 +1,6 @@
 import { connect } from "@/app/lib/dbConnect";
 import { ObjectId } from "mongodb";
+import { revalidatePath } from "next/cache";
 
 const feedbackCollection = connect('feedbacks');
 
@@ -53,6 +54,7 @@ export async function DELETE(req, { params }) {
 
         const query = { _id: new ObjectId(id) };
         const result = await feedbackCollection.deleteOne(query);
+        revalidatePath('/feedback');
 
         if (result.deletedCount === 0) {
             return Response.json({
