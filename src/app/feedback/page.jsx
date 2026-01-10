@@ -2,6 +2,8 @@ import FeedbackCard from '@/components/shared/FeedbackCard/FeedbackCard';
 import Link from 'next/link';
 import React from 'react';
 import { FaPlus } from 'react-icons/fa6';
+import { connect } from '../lib/dbConnect';
+import { getFeedbacks } from '@/actions/server/feedback';
 
 export const metadata = {
     title: 'Feedbacks'
@@ -9,29 +11,8 @@ export const metadata = {
 
 export const dynamic = 'force-dynamic';
 
-const getFeedback = async () => {
-    try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_server}/api/feedback/`, {
-            // cache: 'force-cache',
-            next: { revalidate: 60 }
-        });
-
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-
-        const feedbackData = await res.json();
-        return feedbackData;
-    }
-    catch (error) {
-        console.error('Feedback fetch error: ', error.message);
-
-        return null;
-    }
-}
-
 const FeedbackPage = async () => {
-    const feedback = await getFeedback();
+    const feedback = await getFeedbacks();
 
     return (
         <section className='feedbacks pt-10 pb-4 md:pt-12 md:pb-6 lg:pt-20 lg:pb-14'>

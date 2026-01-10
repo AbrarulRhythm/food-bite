@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
-const FeedBackForm = () => {
+const FeedBackForm = ({ feedbackPost }) => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -23,29 +23,20 @@ const FeedBackForm = () => {
             setError(false);
             setLoading(true);
 
-            const res = await fetch(`${process.env.NEXT_PUBLIC_server}/api/feedback/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ message })
-            });
+            const result = await feedbackPost({ message: message });
 
-            if (!res.ok) {
-                throw new Error('No correct response was received from the server.');
-            }
-
-            const data = await res.json();
-
-            if (data?.data?.insertedId) {
+            if (result?.data?.insertedId) {
                 toast.success('Feedback added successfully! 🎉');
                 e.target.reset(); // form reset
                 router.push('/feedback');
             }
+            else {
+                toast.error(result.message || 'Failed to submit feedback');
+            }
         }
         catch (error) {
-            console.error('Submission Error:', error.message);
-            toast.error('Sorry, something went wrong. Please try again.')
+            console.error('Submission Error:', error);
+            toast.error('Something went wrong. Please try again.');
         }
         finally {
             setLoading(false);
