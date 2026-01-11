@@ -1,5 +1,6 @@
 'use client'
 
+import { deleteFeedback } from '@/actions/server/feedback';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { FaRegTrashAlt } from 'react-icons/fa';
@@ -24,13 +25,9 @@ const DeleteButton = ({ id }) => {
                 setIsDeleting(true);
 
                 try {
-                    const res = await fetch(`${process.env.NEXT_PUBLIC_server}/api/feedback/${id}`, {
-                        method: 'DELETE'
-                    });
+                    const res = await deleteFeedback({ id: id });
 
-                    const data = await res.json();
-
-                    if (data.data.deletedCount) {
+                    if (res.data.deletedCount) {
                         Swal.fire({
                             title: "Deleted!",
                             text: "Your feedback has been deleted.",
